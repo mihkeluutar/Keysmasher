@@ -2,6 +2,9 @@
   a) mängida mängu
   b) lõpetada
   c) vaadata edetabelit
+  tuleb ette selline pring a la: "Vajuta "a" kui sa tahad mängida mängu;  vajuta "h" kui sa tahad mängu lõpetada;
+  vajuta "t" kui sa soovid näha edetabelit. (midagi analoogset)
+
 
 2.  Mängija valib mängimise
 2.1 Programm genereerib ülesande pikkus (nt 20 - 50 tähemärki)
@@ -13,4 +16,9 @@
 2.6 Programm väljastab kasutajale tulemuse - ja lisab piisavalt hea tulemuse edetabelisse
 2.7 Kasutaja saab teha uuesti valiku (vt punkt 1)
 
-3. Kasutaja vaatab edetabelit
+3. kasutaja lõpetab
+   siis soovi programm head ööd ning lõpetab tegevused
+
+
+4. Kasutaja vaatab edetabelit
+    java avab edetableid.txt file ning prindib sealt välja
