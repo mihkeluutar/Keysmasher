@@ -1,1 +1,16 @@
-1.
+1.  Mängija valib kas
+  a) mängida mängu
+  b) lõpetada
+  c) vaadata edetabelit
+
+2.  Mängija valib mängimise
+2.1 Programm genereerib ülesande pikkus (nt 20 - 50 tähemärki)
+2.2 Programm teavitab kasutajat ülesandest ja paneb aja käima (System.currentTimeMIllis();)
+2.3 Kasutaja sisestab soovitud koguse tähemärke ja programm paneb aja kinni
+2.4 Programm loob uue isendi Katse ja lisab sinna vajalikud andmed
+2.5 Programm analüüsib katset - arvutab välja kulunud aja, täpsuse (kas on õige pikkusega ja
+        kas sisetuses on ainult õiged tähemärgid jne)
+2.6 Programm väljastab kasutajale tulemuse - ja lisab piisavalt hea tulemuse edetabelisse
+2.7 Kasutaja saab teha uuesti valiku (vt punkt 1)
+
+3. Kasutaja vaatab edetabelit
