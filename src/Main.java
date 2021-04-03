@@ -5,5 +5,9 @@ public class Main {
         long algusaeg = System.currentTimeMillis();
 
         System.out.println(algusaeg);
+
+        //Mängija valib kas
+        //a) mängida mängu
+        //b) lõpetada
     }
 }
