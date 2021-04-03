@@ -21,4 +21,4 @@
 
 
 4. Kasutaja vaatab edetabelit
-    java avab edetableid.txt file ning prindib sealt välja
+    java avab edetableid.txt file ning prindib sealt välja read mingi normaalse struktuuriga

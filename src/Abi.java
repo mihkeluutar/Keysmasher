@@ -1,7 +1,0 @@
-public class Abi {
-
-    //Tagastab suvalise täisarvu vahemikust min - max
-    public static int suvalinePikkus (int min, int max) {
-        return (int) (Math.random()*(max-min+1)+min);
-    }
-}
