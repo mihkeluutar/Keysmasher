@@ -11,4 +11,6 @@ public class Katse {
         this.nimi = nimi;
         this.ülesanne = ülesanne;
     }
+
+
 }
