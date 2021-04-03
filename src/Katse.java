@@ -1,14 +1,28 @@
 public class Katse {
 
-    String algusaeg;
-    double lõpuaeg;
-    String nimi;
-    Ülesanne ülesanne; //Määrab kui palju tähemärke kasutaja sisestama peab
+    long algusaeg;
+    long lõpuaeg;
+    int ylPikkus;
 
-    public Katse(String algusaeg, double lõpuaeg, String nimi, Ülesanne ülesanne) {
-        this.algusaeg = algusaeg;
-        this.lõpuaeg = lõpuaeg;
-        this.nimi = nimi;
-        this.ülesanne = ülesanne;
+    public static int mituPunkti(long algusaeg, long lõpuaeg, String sisend, int ylPikkus) {
+
+        long ajakulu = 15000 - (lõpuaeg - algusaeg);
+        if (ajakulu <= 0) {
+            ajakulu = 100;
+        }
+
+        int sisendiPikkus = sisend.length();
+        int liigseidPuuduvaid = Math.abs(sisendiPikkus - ylPikkus);
+
+        double täpsus = 1 - (Math.abs(sisendiPikkus - ylPikkus) / ylPikkus) - (liigseidPuuduvaid/ylPikkus);
+        String oodatavTulemus = " ".repeat(ylPikkus);
+        for (int i = 0; i < sisendiPikkus; i++) {
+            if ((sisend.charAt(i)) != ' ') {
+                täpsus -= 1 / sisendiPikkus;
+            }
+        }
+        int punktid = (int) (( ajakulu) * täpsus * (1+(ylPikkus / 100)));
+        return punktid;
     }
+
 }

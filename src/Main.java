@@ -20,6 +20,7 @@ public class Main {
                 String katsetus = in.nextLine();
                 long lõpuaeg = System.currentTimeMillis();
                 System.out.println("Algusaeg: " + algusaeg + "\nLõpuaeg:  " + lõpuaeg + "\nAjakulu:  " + (lõpuaeg-algusaeg));
+                System.out.println("Tulemus: \n" + Katse.mituPunkti(algusaeg, lõpuaeg, katsetus, ylPikkus));
             } else if (sisse.equals("E") || sisse.equals("e")) {
                 System.out.println("Näitan edetabelit");
             } else if (sisse.equals("P") || sisse.equals("p")) {
