@@ -1,28 +1,39 @@
 public class Katse {
 
+    public Katse(long algusaeg, long lõpuaeg, int ylPikkus, String klahv, String kasutajaSisend) {
+        this.algusaeg = algusaeg;
+        this.lõpuaeg = lõpuaeg;
+        this.ylPikkus = ylPikkus;
+        this.klahv = klahv;
+        this.kasutajaSisend = kasutajaSisend;
+    }
+
     long algusaeg;
     long lõpuaeg;
     int ylPikkus;
+    String klahv;
+    String kasutajaSisend;
 
-    public static int mituPunkti(long algusaeg, long lõpuaeg, String sisend, int ylPikkus) {
 
-        long ajakulu = 15000 - (lõpuaeg - algusaeg);
-        if (ajakulu <= 0) {
-            ajakulu = 100;
+    public int mituPunkti() {
+        int punkte = 0;
+        //Arvutab lahendamiseks kulunud aja millisekundites
+        long ajakulu = this.lõpuaeg - this.algusaeg;
+
+        //Pikema ülesandega saab mängija potentsiaalselt rohkem punkte
+        int ajaboonus = this.ylPikkus*50;
+        punkte += ajaboonus;
+
+        //Boonus perfektse tulemuse eest
+        String oodatudSisend = this.klahv.repeat(this.ylPikkus);
+        if (oodatudSisend.equals(this.kasutajaSisend)) {
+            punkte += ylPikkus*20;
         }
 
-        int sisendiPikkus = sisend.length();
-        int liigseidPuuduvaid = Math.abs(sisendiPikkus - ylPikkus);
 
-        double täpsus = 1 - (Math.abs(sisendiPikkus - ylPikkus) / ylPikkus) - (liigseidPuuduvaid/ylPikkus);
-        String oodatavTulemus = " ".repeat(ylPikkus);
-        for (int i = 0; i < sisendiPikkus; i++) {
-            if ((sisend.charAt(i)) != ' ') {
-                täpsus -= 1 / sisendiPikkus;
-            }
-        }
-        int punktid = (int) (( ajakulu) * täpsus * (1+(ylPikkus / 100)));
-        return punktid;
+
+
+        return punkte;
     }
 
 }
