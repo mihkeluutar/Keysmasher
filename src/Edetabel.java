@@ -31,7 +31,7 @@ public class Edetabel extends Mangija{
             while (sc.hasNextLine()){
                 List<String> ajutine = new ArrayList<>();
                 String rida = sc.nextLine();
-//pooleli
+
                 String koht = "";
 
 

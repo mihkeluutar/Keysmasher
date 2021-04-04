@@ -1,7 +1,6 @@
-import java.util.Objects;
-
 public class Katse {
 
+    //Konstruktor uue isendi loomiseks
     public Katse(long algusaeg, long lõpuaeg, int ylPikkus, String klahv, String kasutajaSisend) {
         this.algusaeg = algusaeg;
         this.lõpuaeg = lõpuaeg;
@@ -17,31 +16,40 @@ public class Katse {
     String kasutajaSisend;
 
 
+    //Meetod punktide välja arvutamiseks (võtab arvesse aega, täpsust ja ülesande pikkust)
     public int mituPunkti() {
+        //Kontrollime, et klahv ei oleks 'Space', muidu tekib probleeme tulemuse arvutamisel
         if (this.klahv.equals("Space")) {
             this.klahv = " ";
         }
+
+        //Anname muutujatele esialgsed väärtused
         int punkte = 0;
         double täpsus = 1;
+
         //Arvutab lahendamiseks kulunud aja millisekundites
         long ajakulu = this.lõpuaeg - this.algusaeg;
 
-        //Pikema ülesandega saab mängija potentsiaalselt rohkem punkte
-        int ajaboonus = this.ylPikkus * 50;
-        punkte += ajaboonus;
+        //Pikema ülesandega saab mängija rohkem punkte
+        int pikkusboonus = this.ylPikkus * 50;
+        punkte += pikkusboonus;
 
         //Boonus perfektse tulemuse eest
         String oodatudSisend = this.klahv.repeat(this.ylPikkus);
         if (oodatudSisend.equals(this.kasutajaSisend)) {
             punkte += ylPikkus * 50;
+            System.out.println("Said boonuse!");
+        } else {
+            System.out.println("Ei saanud boonust!");
         }
 
         //Täpsuskoefitsendi arvutamine
-        //Puuduvate ja liigsete sümbolite eest kaotab mängija punkte
-        //Valede tähemärkide eest samuti
+        //Puuduvate, liigsete ja valede tähemärkide eest kaotab mängija punkte
         int liigseidPuuduvaid = Math.abs(oodatudSisend.length() - this.kasutajaSisend.length());
         täpsus -= ((double) (liigseidPuuduvaid)) / ((double) (ylPikkus));
         int valed = 0;
+
+        //Kontrollime, kas kasutaja kasutas ikka õiget klahvi
         if (this.kasutajaSisend.length() <= oodatudSisend.length()) {
             for (int i = 0; i < this.kasutajaSisend.length(); i++) {
                 String oodatud = this.klahv;
@@ -59,16 +67,21 @@ public class Katse {
                 }
             }
         }
+
+        //Vähendame täpsuskoefitsenti vastavalt valedele tähemärkidele
         täpsus -= ((double) (valed)) / ((double) (this.ylPikkus));
 
-        //Kiiruskoefitsendi arvutamine (eeldame ca 8 tähemärki/sec)
-        long eeldatavAeg = this.ylPikkus * 125;
+        //Kiiruskoefitsendi arvutamine (eeldame ca 4 tähemärki/sec)
+        long eeldatavAeg = this.ylPikkus * 250;
         double kiirus = (double) (eeldatavAeg) / (double)(ajakulu);
 
+        //Valem lõppskoori leidmiseks
         punkte = (int) (punkte * täpsus * kiirus);
+
         //Testimise eesmärgil väljastame ka need ekraanile
         System.out.println("Täpsus: " + täpsus);
         System.out.println("Kiirus: " + kiirus);
+
         return punkte;
     }
 

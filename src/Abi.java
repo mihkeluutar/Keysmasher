@@ -7,6 +7,7 @@ public class Abi {
         return (int) (Math.random()*(max-min+1)+min);
     }
 
+    //Abimeetod kasutajalt sisendi saamiseks
     public static String sisend(String kuvatavTekst) {
         System.out.println(kuvatavTekst);
         Scanner in = new Scanner(System.in);

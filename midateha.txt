@@ -1,3 +1,10 @@
+MIDA JUURDE TEHA?
+1) Edetabeli
+2) Suvalise klahvi generaatori, et mäng veits huvitavam oleks
+2.1) Klahviasjast saaks edasi geneda mingisuguse suvaliste tähejärjendite geneja
+3) Mingi x gamemode siia juurde
+
+
 1.  Mängija valib kas
   a) mängida mängu
   b) lõpetada
