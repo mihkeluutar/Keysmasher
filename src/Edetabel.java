@@ -37,16 +37,14 @@ public class Edetabel extends Mangija{
             kirjutaja.close();
 
             List<List> kõiktulemused = new ArrayList<>();
-            //TODO: meetod teeb isendist eraldi pika stringi ning kirjutab selle faili
-
-
+            /*
             while (sc.hasNextLine()){
                 String rida = sc.nextLine();
                 List<String> ajutine = Arrays.asList(rida.split(";"));
 
                 //saan kätte listis oleva esimese elemendi esimene char-i, mis peaks olema koha number tabelis
                 int mitmes_koht = ajutine.get(0).charAt(0);
-
+                */
             }
         }
         catch (IOException e) {
@@ -54,7 +52,7 @@ public class Edetabel extends Mangija{
             e.printStackTrace();
         }
     }
-
+    //meetod saab sisendiks arvu, mitut parimat tulemust kuvatakse ning lisab need sõned Listi
     public static List<String> TopTulemused(int TopTulemusteArv){
 
     }
