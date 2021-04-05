@@ -1,13 +1,23 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Scanner;
+
 public class Tulemus {
 
     public Katse katse;
     public int punktid;
     public String nimi;
+    public LocalDateTime kuupäevKell;
 
-    public Tulemus(Katse katse, int punktid, String nimi) {
+    public Tulemus(Katse katse, int punktid) {
         this.katse = katse;
         this.punktid = punktid;
-        this.nimi = nimi;
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Sisesta oma nimi:");
+        nimi = sc.nextLine();
+
+        kuupäevKell = LocalDateTime.now();
     }
 
     public Katse getKatse() {
@@ -34,11 +44,11 @@ public class Tulemus {
         this.nimi = nimi;
     }
 
+    public LocalDateTime getKuupäevKell() {
+        return kuupäevKell;
+    }
 
-
-
-
-
-
-
+    public void setKuupäevKell(LocalDateTime kuupäevKell) {
+        this.kuupäevKell = kuupäevKell;
+    }
 }

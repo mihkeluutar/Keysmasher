@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,30 +22,57 @@ public class Edetabel extends Mangija{
         kuupäev = getKuupäev();
         nimi = getMangija_nimi();
     }
+    //Scanner sc = new Scanner(new File("tulemused.txt"), StandardCharsets.UTF_8);
 
-    public static void näitaTabel() throws IOException {
+    //kirjutab tulemused faili
+    public static void KirjutaFaili(Tulemus tulemus) throws IOException {
         try {
-            Scanner sc = new Scanner(new File("Edetabel.txt"), StandardCharsets.UTF_8);
-            //FileWriter kirjutaja = new FileWriter("Edetabel.txt");
-            List<List> maatriks = new ArrayList<>();
+            //kontrollin kas fail on olemas ning kui pole, siis ta loob uue
+            LooFail();
+            //loon sõne andmetega
+            String rida = tulemus.getPunktid() + "; " + tulemus.getKatse() + "; " + tulemus.getNimi()  + "; " + tulemus.getKuupäevKell();
+
+            FileWriter kirjutaja = new FileWriter("Tulemused.txt", true);
+            kirjutaja.write(rida);
+            kirjutaja.close();
+
+            List<List> kõiktulemused = new ArrayList<>();
+            //TODO: meetod teeb isendist eraldi pika stringi ning kirjutab selle faili
+
 
             while (sc.hasNextLine()){
-                List<String> ajutine = new ArrayList<>();
                 String rida = sc.nextLine();
+                List<String> ajutine = Arrays.asList(rida.split(";"));
 
-                String koht = "";
-
+                //saan kätte listis oleva esimese elemendi esimene char-i, mis peaks olema koha number tabelis
+                int mitmes_koht = ajutine.get(0).charAt(0);
 
             }
-
-
-
-
-
         }
         catch (IOException e) {
             System.out.println("Siia poleks tohtinud jõuda??!!");
             e.printStackTrace();
         }
     }
+
+    public static List<String> TopTulemused(int TopTulemusteArv){
+
+    }
+
+
+    //meetod kontrollimaks, kas tulemusfail on olemas Kui seda pole, siis ta loob uue
+    public static void LooFail(){
+        try {
+            File tulemused = new File("Tulemused.txt");
+            if (!tulemused.exists()) {
+                tulemused.createNewFile();
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //TODO: teha meetod, mis otsiks tulemused.txt failist top x tulemust välja
 }
