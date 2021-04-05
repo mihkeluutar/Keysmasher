@@ -42,6 +42,7 @@ public class Main {
         System.out.println("Said kokku " + saadudPunkte + " punkti!");
         //Kui skoor on piisavalt hea
         //String nimi = sisend("Sisesta oma nimi: ");
+        //Tulemus praeguneTulemus = new Tulemus(praegune, nimi, saadudPunkte);
         //Mangija mangija = new Mangija(parameetrid)
         //lisaEdetabelisse(mangija);
     }
