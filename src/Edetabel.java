@@ -30,7 +30,7 @@ public class Edetabel extends Mangija{
             //kontrollin kas fail on olemas ning kui pole, siis ta loob uue
             LooFail();
             //loon sõne andmetega
-            String rida = tulemus.getPunktid() + "; " + tulemus.getKatse() + "; " + tulemus.getNimi()  + "; " + tulemus.getKuupäevKell();
+            String rida = tulemus.getPunktid() + "; " + tulemus.getKatse() + "; " + tulemus.getNimi() + "; " + tulemus.getKuupäevKell();
 
             FileWriter kirjutaja = new FileWriter("Tulemused.txt", true);
             kirjutaja.write(rida);
@@ -45,16 +45,49 @@ public class Edetabel extends Mangija{
                 //saan kätte listis oleva esimese elemendi esimene char-i, mis peaks olema koha number tabelis
                 int mitmes_koht = ajutine.get(0).charAt(0);
                 */
-            }
         }
         catch (IOException e) {
             System.out.println("Siia poleks tohtinud jõuda??!!");
             e.printStackTrace();
         }
     }
-    //meetod saab sisendiks arvu, mitut parimat tulemust kuvatakse ning lisab need sõned Listi
-    public static List<String> TopTulemused(int TopTulemusteArv){
 
+    //meetod saab sisendiks arvu, mitut parimat tulemust kuvatakse ning lisab need sõned Listi
+    public static List<String> TopTulemused(int TopTulemusteArv) throws IOException {
+        //loome listi parimate tulemuste jaoks
+        List<String> parimad = new ArrayList<>();
+        try (Scanner sc = new Scanner(new File("tulemused.txt"), StandardCharsets.UTF_8)) {
+
+            List<String> tabel = new ArrayList<>();
+
+            //loeme tulemused sisse
+            while (sc.hasNextLine()) {
+                tabel.add(sc.nextLine());
+            }
+
+            //töötleme tulemuste listi, et kätte saada parimad tulemused
+            for(int i = 0; i < TopTulemusteArv; i++){
+                String suurimListi = null;
+                double suurimVaartus = 0;
+
+                for (String tabeliRida : tabel) {
+                    String[] reaOsad = tabeliRida.split(";");
+                    double vaartus = Double.parseDouble(reaOsad[0].trim());
+
+                    //leiame suurima väärtusega tulemuse
+                    if (vaartus > suurimVaartus) {
+                        suurimVaartus = vaartus;
+                        suurimListi = tabeliRida;
+                    }
+                }
+
+                //lisame parima tulemuse tagastatavasse listi ning eemaldame selle, et leida paremuselt järgmine tulemus
+                parimad.add(suurimListi);
+                tabel.remove(suurimListi);
+            }
+        }
+
+        return parimad;
     }
 
 
