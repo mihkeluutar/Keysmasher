@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +17,7 @@ public class Main {
             } else if (midateha.toLowerCase().equals("m")) {
                 mängi();
             } else if (midateha.toLowerCase().equals("e")) {
-                System.out.println("Edetabel!");
+                edetabel();
             } else if (midateha.toLowerCase().equals("j")) {
                 juhised();
             } else {
@@ -45,6 +46,30 @@ public class Main {
         //Tulemus praeguneTulemus = new Tulemus(praegune, nimi, saadudPunkte);
         //Mangija mangija = new Mangija(parameetrid)
         //lisaEdetabelisse(mangija);
+    }
+
+    //meetod edetabeli väljastamiseks
+    private static void edetabel() {
+        //kasutajalt sisendi saamine
+        String TopTulemusteArvsõne = Abi.sisend("Sisestage soovitud parimate tulemuste arv: ");
+        try {
+            //sisendi täisarvuks muutmine, sobivuse kontrollimine
+            int TopTulemusteArv = Integer.parseInt(TopTulemusteArvsõne);
+            if(TopTulemusteArv > 0) {
+                Edetabel.Tabel(TopTulemusteArv);
+            }
+            else{
+                System.out.println("Tulemuste nägemiseks peab sisestama positiivse täisarvu.");
+            }
+
+        } catch (NumberFormatException nfe){
+            System.out.println("Ootamatu sisend!");
+            navigeerimine();
+        } catch (IOException e){
+            System.out.println("Tulemused puuduvad!");
+            navigeerimine();
+        }
+
     }
 
     /**

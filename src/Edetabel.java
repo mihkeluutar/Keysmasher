@@ -90,6 +90,17 @@ public class Edetabel extends Mangija{
         return parimad;
     }
 
+    public static void Tabel(int ToptulemusteArv) throws IOException {
+        int kohanr = 1;
+        for (String tulemus : TopTulemused(ToptulemusteArv)){
+            if(tulemus != null) {
+                String[] osad = tulemus.split(";");
+                System.out.println(kohanr + ". " + osad[0] + " punkti, " + osad[2] + ", " + osad[3]);
+                kohanr += 1;
+            }
+        }
+    }
+
 
     //meetod kontrollimaks, kas tulemusfail on olemas Kui seda pole, siis ta loob uue
     public static void LooFail(){
