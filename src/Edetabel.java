@@ -15,14 +15,13 @@ public class Edetabel extends Mangija{
     private int tulemus;
     public int koht;
 
-    public Edetabel(int tulemus, int koht) {
+    public Edetabel(Tulemus tulemus, int koht) {
         super(tulemus);
         this.koht = koht;
 
         kuupäev = getKuupäev();
         nimi = getMangija_nimi();
     }
-    //Scanner sc = new Scanner(new File("tulemused.txt"), StandardCharsets.UTF_8);
 
     //kirjutab tulemused faili
     public static void KirjutaFaili(Tulemus tulemus) throws IOException {
@@ -30,13 +29,12 @@ public class Edetabel extends Mangija{
             //kontrollin kas fail on olemas ning kui pole, siis ta loob uue
             LooFail();
             //loon sõne andmetega
-            String rida = tulemus.getPunktid() + "; " + tulemus.getKatse() + "; " + tulemus.getNimi() + "; " + tulemus.getKuupäevKell();
+            String rida = tulemus.getPunktid() + "; " + tulemus.getKatse() + "; " + tulemus.getNimi() + "; " + tulemus.getAeg() + "\n";
 
             FileWriter kirjutaja = new FileWriter("Tulemused.txt", true);
             kirjutaja.write(rida);
             kirjutaja.close();
 
-            List<List> kõiktulemused = new ArrayList<>();
             /*
             while (sc.hasNextLine()){
                 String rida = sc.nextLine();
@@ -56,7 +54,7 @@ public class Edetabel extends Mangija{
     public static List<String> TopTulemused(int TopTulemusteArv) throws IOException {
         //loome listi parimate tulemuste jaoks
         List<String> parimad = new ArrayList<>();
-        try (Scanner sc = new Scanner(new File("tulemused.txt"), StandardCharsets.UTF_8)) {
+        try (Scanner sc = new Scanner(new File("Tulemused.txt"), StandardCharsets.UTF_8)) {
 
             List<String> tabel = new ArrayList<>();
 
@@ -92,6 +90,8 @@ public class Edetabel extends Mangija{
 
     public static void Tabel(int ToptulemusteArv) throws IOException {
         int kohanr = 1;
+
+        //edetabeli väljastamine
         for (String tulemus : TopTulemused(ToptulemusteArv)){
             if(tulemus != null) {
                 String[] osad = tulemus.split(";");
@@ -115,6 +115,4 @@ public class Edetabel extends Mangija{
         }
     }
 
-
-    //TODO: teha meetod, mis otsiks tulemused.txt failist top x tulemust välja
 }

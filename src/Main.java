@@ -4,10 +4,11 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         //Väljastab alustamisel mängijale logo, juhised ja navigeerimisinfo
         pilt();
         juhised();
+        System.out.println("Vajuta sobivat klahvi, et jätkata.");
         navigeerimine();
         while (true) {
             String midateha = Abi.sisend("");
@@ -20,6 +21,8 @@ public class Main {
                 edetabel();
             } else if (midateha.toLowerCase().equals("j")) {
                 juhised();
+                Abi.sisend("\n" + "Vajutage enter, et naaseda menüüsse.");
+                navigeerimine();
             } else {
                 System.out.println("Ootamatu sisend, proovi uuesti!");
                 navigeerimine();
@@ -28,7 +31,7 @@ public class Main {
     }
 
     //Meetod uue ülesande loomiseks ja mängimiseks
-    private static void mängi() throws InterruptedException {
+    private static void mängi() throws InterruptedException, IOException {
         System.out.print("Sean mängu valmis");
         for (int i = 0; i < 3; i++) {
             TimeUnit.SECONDS.sleep(1);
@@ -40,12 +43,20 @@ public class Main {
 
         //Kuvame ekraanile mängija saadud punktid
         int saadudPunkte = praegune.mituPunkti();
-        System.out.println("Said kokku " + saadudPunkte + " punkti!");
+        System.out.println("Said kokku " + saadudPunkte + " punkti!\n");
+
         //Kui skoor on piisavalt hea
-        //String nimi = sisend("Sisesta oma nimi: ");
-        //Tulemus praeguneTulemus = new Tulemus(praegune, nimi, saadudPunkte);
-        //Mangija mangija = new Mangija(parameetrid)
-        //lisaEdetabelisse(mangija);
+        if (saadudPunkte > 0) {
+            //Mangija mangija = new Mangija(praeguneTulemus);
+
+            Tulemus praeguneTulemus = new Tulemus(praegune, saadudPunkte);
+            Edetabel.KirjutaFaili(praeguneTulemus);
+            System.out.println("\n");
+        }
+
+        //menüü kuvamine
+        navigeerimine();
+
     }
 
     //meetod edetabeli väljastamiseks
@@ -61,6 +72,8 @@ public class Main {
             else{
                 System.out.println("Tulemuste nägemiseks peab sisestama positiivse täisarvu.");
             }
+            Abi.sisend("\n" + "Vajutage enter, et naaseda menüüsse.");
+            navigeerimine();
 
         } catch (NumberFormatException nfe){
             System.out.println("Ootamatu sisend!");
@@ -121,8 +134,7 @@ public class Main {
                 "Mäng on lihtne - arvuti annab sulle ülesande ning sinu \n" +
                 "eesmärk on soovitud klahvi võimalikult kiiresti nõutud \n" +
                 "kordi vajutada.\n" +
-                "Ole täpne, sest vale sisestuse korral kaotad punkte! \n\n" +
-                "Vajuta sobivat klahvi, et jätkata.");
+                "Ole täpne, sest vale sisestuse korral kaotad punkte! \n");
     }
 
     //Kuvab ekraanile klahvid, mis on vajalikud navigeerimiseks

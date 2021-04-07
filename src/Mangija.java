@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class Mangija {
     public String mangija_nimi;
     public LocalDate kuupäev;
-    public int tulemus;
+    public Tulemus tulemus;
 
-    public Mangija(int tulemus) {
+    public Mangija(Tulemus tulemus) {
         this.tulemus = tulemus;
 
         Scanner sc = new Scanner(System.in);
@@ -25,7 +25,7 @@ public class Mangija {
         return kuupäev;
     }
 
-    public int getTulemus() {
+    public Tulemus getTulemus() {
         return tulemus;
     }
 

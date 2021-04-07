@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Tulemus {
@@ -8,6 +9,7 @@ public class Tulemus {
     public int punktid;
     public String nimi;
     public LocalDateTime kuupäevKell;
+    public String aeg;
 
     public Tulemus(Katse katse, int punktid) {
         this.katse = katse;
@@ -18,6 +20,7 @@ public class Tulemus {
         nimi = sc.nextLine();
 
         kuupäevKell = LocalDateTime.now();
+        aeg = kuupäevKell.format(DateTimeFormatter.ofPattern("dd/MM/yyyy h:mm a"));
     }
 
     public Katse getKatse() {
@@ -51,4 +54,6 @@ public class Tulemus {
     public void setKuupäevKell(LocalDateTime kuupäevKell) {
         this.kuupäevKell = kuupäevKell;
     }
+
+    public String getAeg() { return aeg; }
 }
