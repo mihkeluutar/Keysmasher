@@ -72,7 +72,7 @@ public class Main {
             else{
                 System.out.println("Tulemuste nägemiseks peab sisestama positiivse täisarvu.");
             }
-            Abi.sisend("\n" + "Vajutage enter, et naaseda menüüsse.");
+            Abi.sisend("\n" + "Vajutage 'ENTER', et naaseda menüüsse.");
             navigeerimine();
 
         } catch (NumberFormatException nfe){
