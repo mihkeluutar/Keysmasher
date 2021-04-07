@@ -47,8 +47,6 @@ public class Main {
 
         //Kui skoor on piisavalt hea
         if (saadudPunkte > 0) {
-            //Mangija mangija = new Mangija(praeguneTulemus);
-
             Tulemus praeguneTulemus = new Tulemus(praegune, saadudPunkte);
             Edetabel.KirjutaFaili(praeguneTulemus);
             System.out.println("\n");
