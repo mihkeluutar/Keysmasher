@@ -115,4 +115,5 @@ public class Edetabel extends Mangija{
         }
     }
 
+
 }

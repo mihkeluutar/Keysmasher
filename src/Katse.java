@@ -47,6 +47,7 @@ public class Katse {
         //Puuduvate, liigsete ja valede tähemärkide eest kaotab mängija punkte
         int liigseidPuuduvaid = Math.abs(oodatudSisend.length() - this.kasutajaSisend.length());
         täpsus -= ((double) (liigseidPuuduvaid)) / ((double) (ylPikkus));
+        täpsus = Math.abs(täpsus);
         int valed = 0;
 
         //Kontrollime, kas kasutaja kasutas ikka õiget klahvi
@@ -76,6 +77,8 @@ public class Katse {
         double kiirus = (double) (eeldatavAeg) / (double)(ajakulu);
 
         //Valem lõppskoori leidmiseks
+        if (täpsus < 0)
+            täpsus = 0.01;
         punkte = (int) (punkte * täpsus * kiirus);
 
         //Testimise eesmärgil väljastame ka need ekraanile

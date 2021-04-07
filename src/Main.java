@@ -21,7 +21,7 @@ public class Main {
                 edetabel();
             } else if (midateha.toLowerCase().equals("j")) {
                 juhised();
-                Abi.sisend("\n" + "Vajutage enter, et naaseda menüüsse.");
+                Abi.sisend("\n" + "Vajutage 'ENTER', et naaseda menüüsse.");
                 navigeerimine();
             } else {
                 System.out.println("Ootamatu sisend, proovi uuesti!");
