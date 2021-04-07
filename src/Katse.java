@@ -46,8 +46,7 @@ public class Katse {
         //Täpsuskoefitsendi arvutamine
         //Puuduvate, liigsete ja valede tähemärkide eest kaotab mängija punkte
         int liigseidPuuduvaid = Math.abs(oodatudSisend.length() - this.kasutajaSisend.length());
-        täpsus -= ((double) (liigseidPuuduvaid)) / ((double) (ylPikkus));
-        täpsus = Math.abs(täpsus);
+        täpsus *= ((double) (liigseidPuuduvaid)) / ((double) (ylPikkus));
         int valed = 0;
 
         //Kontrollime, kas kasutaja kasutas ikka õiget klahvi
@@ -70,7 +69,12 @@ public class Katse {
         }
 
         //Vähendame täpsuskoefitsenti vastavalt valedele tähemärkidele
-        täpsus -= ((double) (valed)) / ((double) (this.ylPikkus));
+        //Kui valede tähemärkide arv on suurem kui ülesande pikkus korrutame täpsusekoefitseandi 0.1-ga
+        if (valed > this.ylPikkus) {
+            täpsus *= 0.1;
+        } else if (valed != 0){
+            täpsus *= ((double) (valed)) / ((double) (this.ylPikkus));
+        }
 
         //Kiiruskoefitsendi arvutamine (eeldame ca 4 tähemärki/sec)
         long eeldatavAeg = this.ylPikkus * 250;
